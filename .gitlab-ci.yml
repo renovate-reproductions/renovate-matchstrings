@@ -1,0 +1,9 @@
+stages:
+  - lint
+  - deploy-integration
+  - deploy-staging
+  - deploy-production
+
+variables:
+  CHART_NAME: helm-repo/my-cronjob-chart
+  CHART_VERSION: 1.0.0

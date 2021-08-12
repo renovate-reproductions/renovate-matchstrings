@@ -1,0 +1,3 @@
+variables:
+  CHART_NAME: helm-repo/my-server-chart
+  CHART_VERSION: 4.5.0
