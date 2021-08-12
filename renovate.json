@@ -4,41 +4,15 @@
     "config:base",
     "docker:enableMajor"
   ],
-  "packageRules": [
-    {
-      "updateTypes": ["minor", "patch", "pin", "digest"],
-      "automerge": true,
-      "schedule": [
-        "before 9am on the first day of the month"
-      ]
-    },
-    {
-      "matchManagers": ["regex"],
-      "schedule": ["after 10am and before 5pm every weekday"]
-    }
-  ],
   "regexManagers": [
     {
       "fileMatch": ["(^|/).?gitlab-ci.yml$"],
       "matchStringsStrategy":"combination",
-      "matchStrings":[
-        "CHART_NAME: helm-repo\/my-server-chart",
-        "CHART_VERSION:\\s*(?<currentValue>.*)"
+          "matchStrings":[
+            "\\s*CHART_NAME: helm-repo\/(?<chart>.+)\\n",
+            "\\s*CHART_VERSION:\\s*(?<currentValue>.*)\\s*"
       ],
-      "depNameTemplate": "sre/iac/helm-charts/my-server-chart",
-      "lookupNameTemplate": "sre/iac/helm-charts/my-server-chart",
-      "datasourceTemplate": "gitlab-tags",
-      "registryUrlTemplate": "https://git.company.com/"
-    },
-    {
-      "fileMatch": ["(^|/).?gitlab-ci.yml$"],
-      "matchStringsStrategy":"combination",
-      "matchStrings":[
-        "CHART_NAME: helm-repo\/my-cronjob-chart",
-        "CHART_VERSION:\\s*(?<currentValue>.*)"
-      ],
-      "depNameTemplate": "sre/iac/helm-charts/my-cronjob-chart",
-      "lookupNameTemplate": "sre/iac/helm-charts/my-cronjob-chart",
+      "depNameTemplate": "sre/iac/helm-charts/{{{ chart }}}",
       "datasourceTemplate": "gitlab-tags",
       "registryUrlTemplate": "https://git.company.com/"
     },
