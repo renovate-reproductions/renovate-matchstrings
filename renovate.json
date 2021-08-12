@@ -9,10 +9,10 @@
       "fileMatch": ["(^|/).?gitlab-ci.yml$"],
       "matchStringsStrategy":"combination",
           "matchStrings":[
-            "\\s*CHART_NAME: helm-repo\/(?<chart>.+)\\n",
+            "\\s*CHART_NAME: helm-repo\/(?<depName>.+)\\n",
             "\\s*CHART_VERSION:\\s*(?<currentValue>.*)\\s*"
       ],
-      "depNameTemplate": "sre/iac/helm-charts/{{{ chart }}}",
+      "depNameTemplate": "sre/iac/helm-charts/{{{ depName }}}",
       "datasourceTemplate": "gitlab-tags",
       "registryUrlTemplate": "https://git.company.com/"
     },
